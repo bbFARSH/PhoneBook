@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,23 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PhoneBook
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для AddContact.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddContact : Window
     {
-        public MainWindow()
+        public AddContact()
         {
             InitializeComponent();
-            MainViewModel mainViewModel = new MainViewModel();
-            DataContext = mainViewModel;
-            if (mainViewModel.CloseAction == null)
-                mainViewModel.CloseAction = new Action(Close);
+            AddContactViewModel addViewModel = new AddContactViewModel();
+            DataContext = addViewModel;
+            if (addViewModel.CloseAction == null)
+                addViewModel.CloseAction = new Action(Close);
         }
     }
 }

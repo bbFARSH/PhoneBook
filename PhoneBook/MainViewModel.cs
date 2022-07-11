@@ -1,48 +1,68 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel;
-using MySql.Data.MySqlClient;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PhoneBook
 {
-    class MainViewModel : INotifyPropertyChanged
+    class MainViewModel : INotifyPropertyChanged // vievmodel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         void Notify(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-        Persone persone;
-        AuthorizationModel authorization;
-        public Persone MyPersone
-        {
-            get { return persone; }
-            set
-            {
-                persone = value;
-                Notify("MyPersone");
-            }
+        Person persone;
+        PersonModel model;
+        public Action CloseAction { get; set; }
 
-        }
         public MainViewModel()
         {
-            authorization = new AuthorizationModel();
-            persone = new Persone();
+            persone = new Person();
+            model = new PersonModel();
         }
-        public ICommand ShowWindow
+        public ICommand EnterButton
         {
             get
             {
-                return new ButtonClick
-                    (
-                    new Action(()=>
+                return new ButtonCommand(new Action(() =>
+                {
+                    Person persone1 = model.GetPerson(Login,Password);
+                    if (persone1.Login  == Login && persone1.Password == Password && Login != null && Password != null)
                     {
-                    authorization.Open(persone);
-                    }));
+                        Application.Current.MainWindow.Visibility = Visibility.Hidden;
+                        PhoneBookContact phoneBookContact = new PhoneBookContact();
+                        phoneBookContact.ShowDialog();
+                        if (phoneBookContact.ShowDialog().Value == false)
+                            CloseAction();
+                    }
+                    else
+                        MessageBox.Show("Неверный логин или пароль");
+                }));
+            }
+        }
+        public string Login
+        {
+            get { return persone.Login; }
+            set
+            {
+                persone.Login = value;
+                Notify("Login");
+            }
+        }
+        public string Password
+        {
+            get { return persone.Password; }
+            set
+            {
+                persone.Password = value;
+                Notify("Password");
             }
         }
     }

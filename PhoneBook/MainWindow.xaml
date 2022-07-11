@@ -3,14 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PhoneBook"
+        xmlns:local="clr-namespace:PhoneBook" d:DataContext="{d:DesignInstance Type=local:MainViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="355" Width="511">
-    <StackPanel Margin="30">
+    <StackPanel Margin="25">
         <Label>Логин:</Label>
-        <TextBox Text="{Binding MyPersone.Login, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label>Пароль:</Label>
-        <TextBox Text="{Binding MyPersone.Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Button Margin="0,15,0,0" Command="{Binding ShowWindow, UpdateSourceTrigger=PropertyChanged}">Войти</Button>
+        <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Command="{Binding EnterButton}" Margin="50,10,50,0" Background="White">Войти:</Button>
     </StackPanel>
 </Window>

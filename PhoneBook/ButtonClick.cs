@@ -9,12 +9,12 @@ using System.Windows.Input;
 
 namespace PhoneBook
 {
-    class ButtonClick : ICommand
+    class ButtonCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
         Action _action;
-        public ButtonClick(Action action)
+        public ButtonCommand(Action action)
         {
             _action = action;
         }

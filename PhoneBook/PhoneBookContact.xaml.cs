@@ -10,23 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PhoneBook
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для PhoneBookContact.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PhoneBookContact : Window
     {
-        public MainWindow()
+        public PhoneBookContact()
         {
             InitializeComponent();
-            MainViewModel mainViewModel = new MainViewModel();
-            DataContext = mainViewModel;
-            if (mainViewModel.CloseAction == null)
-                mainViewModel.CloseAction = new Action(Close);
         }
     }
 }

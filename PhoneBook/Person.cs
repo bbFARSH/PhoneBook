@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace PhoneBook
 {
-    class Persone
+    class Person // contact
     {
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public string Datetime { get; set; }
+        public string Date { get; set; }
     }
 }
